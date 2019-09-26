@@ -153,7 +153,41 @@ def wrapByWidth2(filename, width):
             
     
 wrapByWidth2("sheShells.txt", 15)
+print()
 
 ##42_ center align all lines in a file
-def center_align():
-    print()
+def center_align(filename):
+    f = open(filename)
+    lines = f.readlines()
+    line = f.readline()
+    longest = 0
+    for l in lines:
+        if (len(l) > longest):
+            longest = len(l)
+    print(longest)
+    
+    for l in lines:
+        if(len(l) < longest):
+            s = (longest - len(l))/2
+            s = int(s)
+            for i in range(0, s):
+                print(" ", end="")
+            print(l)
+        else:
+            print(l)
+
+center_align("sheShells.txt")
+
+## 2.6 List Comprehensions
+#a = range(10)
+#print([x for x in a if x%2 == 0])
+
+#apparently
+#filter() and map() dont work normally in python3
+def even(x): return x %2 == 0
+
+##46_  returns a list of triplets such that sum of first two elements of the triplet equals the third element using numbers below n.
+def triplets(n):
+    return [(x, y,z) for x in range(1, n) for y in range(x, n) for z in range(y, n) if (x+y) == z]
+
+print(triplets(5))
